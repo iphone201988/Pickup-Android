@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetPaymentMethodApiResponse.PaymentMethods.ExternalAccount" />
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_edit_text">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCardIcon"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/iv_card_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/_10sdp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAccountNo"
+            style="@style/TextView.DmSansMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:text='@{bean.bank_name+"- ****"+bean.last4.toString()}'
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/ivEnter"
+            app:layout_constraintTop_toTopOf="@id/ivCardIcon"
+            app:layout_constraintBottom_toBottomOf="@id/ivCardIcon"
+            app:layout_constraintStart_toEndOf="@id/ivCardIcon"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEnter"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/iv_back"
+            android:rotation="180"
+            android:tint="@color/arrow_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAccountNo"
+            app:layout_constraintBottom_toBottomOf="@id/tvAccountNo"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

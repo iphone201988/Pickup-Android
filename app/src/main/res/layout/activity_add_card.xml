@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.pickup.sports.ui.home_modules.add_card_module.AddCardActivityVm" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home_modules.add_card_module.AddCardActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/iv_back"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/view_line"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"/>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toBottomOf="@id/viewLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etCardNumber"
+                    style="@style/TextView.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@drawable/bg_edit_card"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:hint="Card Number"
+                    android:textSize="@dimen/_13ssp"
+                    android:inputType="number"
+                    android:textColor="@color/heading_color"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCamera"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:src="@drawable/iv_camera"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/etCardNumber"
+                    app:layout_constraintTop_toTopOf="@id/etCardNumber"
+                    app:layout_constraintBottom_toBottomOf="@id/etCardNumber"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etExpirationDate"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@drawable/bg_edit_card"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="Expiration date"
+                    android:textColor="@color/heading_color"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toStartOf="@id/etSecurityCode"
+                    app:layout_constraintEnd_toEndOf="@id/etCardNumber"
+                    app:layout_constraintTop_toBottomOf="@id/etCardNumber"
+                    app:layout_constraintStart_toStartOf="@id/etCardNumber"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSecurityCode"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@drawable/bg_edit_card"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:hint="Security code"
+                    android:textColor="@color/heading_color"
+                    android:textSize="@dimen/_13ssp"
+                    android:maxLength="3"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/etCardNumber"
+                    app:layout_constraintTop_toTopOf="@id/etExpirationDate"
+                    app:layout_constraintBottom_toBottomOf="@id/etExpirationDate"
+                    app:layout_constraintStart_toEndOf="@id/etExpirationDate"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etZipCode"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@drawable/bg_edit_card"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="ZIP code"
+                    android:textColor="@color/heading_color"
+                    android:textSize="@dimen/_13ssp"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/etExpirationDate"
+                    app:layout_constraintStart_toStartOf="@id/etExpirationDate"
+                    app:layout_constraintEnd_toEndOf="@id/etSecurityCode"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/backupPayment"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="@string/add_as_your_backup_payment_optional"
+                    app:layout_constraintStart_toStartOf="@id/etZipCode"
+                    app:layout_constraintTop_toBottomOf="@id/etZipCode"/>
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/setDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track"
+                    app:layout_constraintTop_toTopOf="@id/backupPayment"
+                    app:layout_constraintBottom_toBottomOf="@id/backupPayment"
+                    app:layout_constraintEnd_toEndOf="@id/etZipCode"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textSize="@dimen/_10ssp"
+                    android:text="@string/pre_paid_cards_can_t_be_used_for_backup_payments"
+                    app:layout_constraintTop_toBottomOf="@id/backupPayment"
+                    app:layout_constraintStart_toStartOf="@id/backupPayment"
+                    app:layout_constraintEnd_toEndOf="@id/etZipCode"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvContinue"
+                    style="@style/TextView.Semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/bg_dark_btn"
+                    android:backgroundTint="@color/view_color"
+                    android:gravity="center"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:text="Continue"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintTop_toBottomOf="@id/description"
+                    app:layout_constraintStart_toStartOf="@id/description"
+                    app:layout_constraintEnd_toEndOf="@id/description"/>
+
+                
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintTop_toBottomOf="@id/tvContinue"
+                    app:layout_constraintStart_toStartOf="@id/tvContinue"
+                    app:layout_constraintEnd_toEndOf="@id/tvContinue"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="@string/venmo_is_a_service_of_paypal_inc_nmls_id_910457"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

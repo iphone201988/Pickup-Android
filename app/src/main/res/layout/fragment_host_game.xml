@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.pickup.sports.ui.home_modules.host_games_module.HostGameFragmentVm" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home_modules.host_games_module.HostGameFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/host_games"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/iv_back"
+            android:visibility="gone"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/view_line"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"/>
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        android:fillViewport="true"-->
+<!--        android:layout_marginVertical="@dimen/_10sdp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/tvHostGame"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/viewLine"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/howItWork"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/how_it_works"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/viewLine"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/grey_800"
+            android:text="@string/hosting_is_a_great_opportunity_to_earn_money_while_playing_your_favorite_sports_simply_create_a_game_and_earn_host_s_earn_75_of_all_game_revenues"
+            app:layout_constraintTop_toBottomOf="@id/howItWork"
+            app:layout_constraintStart_toStartOf="@id/howItWork"
+            app:layout_constraintEnd_toEndOf="@id/howItWork"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/point1"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hosts_must_provide_all_equipment_balls_goals_etc"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/grey_800"
+            app:layout_constraintStart_toStartOf="@id/description"
+            app:layout_constraintEnd_toEndOf="@id/description"
+            app:layout_constraintTop_toBottomOf="@id/description"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/point2"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hosts_must_reserve_secure_the_playing_field"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/grey_800"
+            app:layout_constraintTop_toBottomOf="@id/point1"
+            app:layout_constraintStart_toStartOf="@id/point1"
+            app:layout_constraintEnd_toEndOf="@id/point1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/point3"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hosts_must_facilitate_the_starting_and_ending_of_games"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/point2"
+            app:layout_constraintStart_toStartOf="@id/point2"
+            app:layout_constraintEnd_toEndOf="@id/point2"
+            android:textColor="@color/grey_800"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/point4"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hosts_are_responsible_for_the_entire_event"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/grey_800"
+            app:layout_constraintTop_toBottomOf="@id/point3"
+            app:layout_constraintStart_toStartOf="@id/point3"
+            app:layout_constraintEnd_toEndOf="@id/point3"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/bg_edit_text"
+            app:tabTextColor="@color/black"
+            app:tabBackground="@drawable/game_tab_selector"
+            app:tabSelectedTextColor="@color/black"
+            android:textAllCaps="false"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:tabMode="fixed"
+            app:tabIndicator="@null"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabGravity="fill"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@id/point4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
+            app:layout_constraintStart_toStartOf="@id/tabLayout"
+            app:layout_constraintEnd_toEndOf="@id/tabLayout"
+            app:layout_constraintBottom_toTopOf="@id/tvHostGame"/>
+
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/myHostGames"-->
+<!--            style="@style/TextView.Semibold"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/my_hosted_games"-->
+<!--            android:textSize="@dimen/_14ssp"-->
+<!--            android:textColor="@color/heading_color"-->
+<!--            android:layout_marginTop="@dimen/_15sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/point4"-->
+<!--            app:layout_constraintStart_toStartOf="@id/description"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/point4"/>-->
+
+
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tvUpcoming"-->
+<!--            style="@style/TextView.Semibold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/upcoming"-->
+<!--            android:textSize="@dimen/_14ssp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/myHostGames"-->
+<!--            app:layout_constraintStart_toStartOf="@id/myHostGames"/>-->
+
+
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rvUpcoming"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            android:orientation="vertical"-->
+<!--            tools:itemCount="3"-->
+<!--            tools:listitem="@layout/item_layout_host_game_data"-->
+<!--            android:layout_marginHorizontal="@dimen/_10sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvUpcoming"-->
+<!--            app:layout_constraintStart_toStartOf="@id/rvUpcoming"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tvPastGames"-->
+<!--            style="@style/TextView.Semibold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/past_games"-->
+<!--            android:textSize="@dimen/_14ssp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rvUpcoming"-->
+<!--            app:layout_constraintStart_toStartOf="@id/rvUpcoming"/>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rvPastGames"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            android:orientation="vertical"-->
+<!--            tools:itemCount="3"-->
+<!--            tools:listitem="@layout/item_layout_host_game_data"-->
+<!--            android:layout_marginHorizontal="@dimen/_10sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvPastGames"-->
+<!--            app:layout_constraintStart_toStartOf="@id/tvPastGames"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/tvPastGames"/>-->
+
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rvHostGame"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginVertical="@dimen/_10sdp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/tvHostGame"-->
+        <!--            app:layout_constraintEnd_toEndOf="@id/myHostGames"-->
+        <!--            app:layout_constraintHorizontal_bias="1.0"-->
+        <!--            app:layout_constraintStart_toStartOf="@id/myHostGames"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/myHostGames"-->
+        <!--            app:layout_constraintVertical_bias="0.56"-->
+        <!--            tools:listitem="@layout/item_layout_host_event_date" />-->
+
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHostGame"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/view_color"
+            android:gravity="center"
+            android:onClick="@{ v -> vm.onClick(v)}"
+            android:text="@string/host_a_game"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

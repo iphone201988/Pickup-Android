@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetAllPlayersApiResponse.User" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <import type="android.text.TextUtils"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consMain"
+            android:layout_width="0dp"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/sideArrow"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileImage"
+                shapeImage="@{bean.profileImage}"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:src="@drawable/iv_dumm"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/personName"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/personName"
+                style="@style/TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:text='@{bean.firstName + (bean.lastName != null ? " " + bean.lastName : "")}'
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/heading_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profileImage"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/locationName"
+                style="@style/TextView.Regular"
+                android:textSize="@dimen/_8ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cityNameOnly="@{bean.city}"
+                android:textColor="@color/heading_color"
+                app:layout_constraintTop_toBottomOf="@id/personName"
+                app:layout_constraintStart_toStartOf="@id/personName"/>
+
+            <ImageView
+                android:id="@+id/dotImage"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:src="@drawable/iv_dot"
+                android:layout_marginStart="@dimen/_3sdp"
+                app:layout_constraintTop_toTopOf="@id/locationName"
+                app:layout_constraintBottom_toBottomOf="@id/locationName"
+                app:layout_constraintStart_toEndOf="@id/locationName"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/joinedPlayer"
+                style="@style/TextView.Regular"
+                monthYear="@{bean.createdAt}"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/heading_color"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toEndOf="@id/dotImage"
+                app:layout_constraintTop_toTopOf="@id/locationName"
+                app:layout_constraintBottom_toBottomOf="@id/locationName"/>
+
+            <ImageView
+                android:id="@+id/dotGameImage"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:src="@drawable/iv_dot"
+                android:layout_marginStart="@dimen/_3sdp"
+                app:layout_constraintTop_toTopOf="@id/joinedPlayer"
+                app:layout_constraintBottom_toBottomOf="@id/joinedPlayer"
+                app:layout_constraintStart_toEndOf="@id/joinedPlayer"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/gamesPlayed"
+                style="@style/TextView.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:textColor="@color/heading_color"
+                android:textSize="@dimen/_8ssp"
+                android:text='@{"Game Played " + bean.joinedGames}'
+                app:layout_constraintStart_toEndOf="@id/dotGameImage"
+                app:layout_constraintTop_toTopOf="@id/joinedPlayer"
+                app:layout_constraintBottom_toBottomOf="@id/joinedPlayer"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sideArrow"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/iv_side_arrow"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:tint="@color/grey_400"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="callback"
+            type="com.pickup.sports.utils.BaseCustomBottomSheet.Listener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_10sdp"
+        android:background="@drawable/bg_bottom_sheet">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/loginToContinue"
+                    style="@style/TextView.Semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_18ssp"
+                    android:textColor="@color/heading_color"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/sign_up_to_continue"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etName"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="text"
+                    android:hint="Name"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/loginToContinue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="text"
+                    android:hint="@string/email"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etName"
+                    app:layout_constraintStart_toStartOf="@id/etName"
+                    app:layout_constraintEnd_toEndOf="@id/etName"/>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/etCountryCode"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/etEmail"
+                    app:layout_constraintStart_toStartOf="@id/etEmail"
+                    android:background="@drawable/bg_edit_text">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/countyCodePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        app:layout_constraintTop_toTopOf="@id/etCountryCode"
+                        app:layout_constraintStart_toStartOf="@id/etCountryCode"
+                        app:layout_constraintBottom_toBottomOf="@id/etCountryCode"
+                        app:layout_constraintEnd_toEndOf="@id/etCountryCode"
+                        app:ccp_showFullName="false"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="false"
+                        app:ccp_showFlag="false"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="number"
+                    android:hint="Phone Number"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toTopOf="@id/etCountryCode"
+                    app:layout_constraintBottom_toBottomOf="@id/etCountryCode"
+                    app:layout_constraintStart_toEndOf="@id/etCountryCode"
+                    app:layout_constraintEnd_toEndOf="@id/etEmail"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etCity"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="text"
+                    android:hint="City"
+                    android:onClick="@{v -> callback.onViewClick(v)}"
+                    android:focusable="false"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etPhoneNumber"
+                    app:layout_constraintStart_toStartOf="@id/etEmail"
+                    app:layout_constraintEnd_toEndOf="@id/etEmail"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSelectSport"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    android:hint="Sports you want to play"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etCity"
+                    app:layout_constraintStart_toStartOf="@id/etCity"
+                    app:layout_constraintEnd_toEndOf="@id/etCity"/>
+
+
+                <ImageView
+                    android:id="@+id/dropDown"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:src="@drawable/iv_drop_icon"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etSelectSport"
+                    app:layout_constraintEnd_toEndOf="@id/etSelectSport"
+                    app:layout_constraintBottom_toBottomOf="@id/etSelectSport"
+                    app:tint="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:backgroundTint="@color/grey_100"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etSelectSport"
+                    app:layout_constraintStart_toStartOf="@id/etEmail"
+                    app:layout_constraintEnd_toEndOf="@id/etEmail"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/signUpShowPassword"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:src="@drawable/iv_show_password"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etPassword"
+                    app:layout_constraintEnd_toEndOf="@id/etPassword"
+                    app:layout_constraintBottom_toBottomOf="@id/etPassword"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etReferralCode"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/grey_100"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:inputType="text"
+                    android:hint="Referral Code(Optional)"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etPassword"
+                    app:layout_constraintStart_toStartOf="@id/etPassword"
+                    app:layout_constraintEnd_toEndOf="@id/etPassword"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAgreeTerms"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/by_continuing_you_agree_to_terms_outlined_in"
+                    app:layout_constraintTop_toBottomOf="@id/etReferralCode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEndUserLicence"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    android:text="@string/end_user_licence_agreement_eula"
+                    app:layout_constraintTop_toBottomOf="@id/tvAgreeTerms"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSignUp"
+                    style="@style/TextView.DmSansMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:backgroundTint="@color/black"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    android:gravity="center"
+                    android:text="@string/sign_up1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintTop_toBottomOf="@id/tvEndUserLicence"
+                    app:layout_constraintStart_toStartOf="@id/etPassword"
+                    app:layout_constraintEnd_toEndOf="@id/etPassword"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/alreadyHaveAccount"
+                    style="@style/TextView.DmSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_600"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:text="@string/already_have_an_account"
+                    app:layout_constraintTop_toBottomOf="@id/tvSignUp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/SignIn"
+                    style="@style/TextView.DmSansMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:onClick="@{v->callback.onViewClick(v)}"
+                    app:layout_constraintTop_toTopOf="@id/alreadyHaveAccount"
+                    app:layout_constraintBottom_toBottomOf="@id/alreadyHaveAccount"
+                    app:layout_constraintStart_toEndOf="@id/alreadyHaveAccount"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

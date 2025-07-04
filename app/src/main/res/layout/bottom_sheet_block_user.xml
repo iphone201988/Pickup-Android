@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.pickup.sports.utils.BaseCustomBottomSheet.Listener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_bottom_sheet">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBlock"
+            style="@style/TextView.DmSansMedium"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_edit_text"
+            android:backgroundTint="@color/heading_color"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:gravity="center"
+            android:text="Block"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCancel"
+            style="@style/TextView.DmSansMedium"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_edit_text"
+            android:backgroundTint="@color/grey_400"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:gravity="center"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toBottomOf="@id/tvBlock"
+            app:layout_constraintStart_toStartOf="@id/tvBlock"
+            app:layout_constraintEnd_toEndOf="@id/tvBlock"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

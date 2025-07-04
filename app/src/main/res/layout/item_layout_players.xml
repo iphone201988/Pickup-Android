@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetGameByIdApiResponse.Game.SlotId" />
+        <variable
+            name="pos"
+            type="Integer" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/playerCons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> callback.onItemClick(v, bean,pos)}"
+        android:paddingVertical="@dimen/_10sdp"
+        android:background="@drawable/bg_edit_text">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playerImage"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/iv_profile"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/playerName"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:text='@{bean.lastName != null &amp; !bean.lastName.isEmpty() ? bean.firstName + " " + bean.lastName : bean.firstName}'
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textColor="@color/heading_color"
+            app:layout_constraintTop_toTopOf="@id/playerImage"
+            app:layout_constraintBottom_toBottomOf="@id/playerImage"
+            app:layout_constraintStart_toEndOf="@id/playerImage"/>
+        
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

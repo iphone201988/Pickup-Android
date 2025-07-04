@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.pickup.sports.ui.home_modules.payment_policy.PaymentPolicyActivityVm" />
+
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetGameByIdApiResponse.Game" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home_modules.payment_policy.PaymentPolicyActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@{bean.sportsData.name}"
+            android:textColor="@color/heading_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/view_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvConfirmPay"
+            app:layout_constraintTop_toBottomOf="@id/viewLine">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <View
+                    android:id="@+id/viewLine2"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/heading_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consSportsData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/viewLine2"
+                    app:layout_constraintStart_toStartOf="@id/viewLine2"
+                    app:layout_constraintTop_toBottomOf="@id/viewLine2">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivSportImage"
+                        setImages="@{bean.photos[0]}"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/iv_basket_ball"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/sportName"
+                        style="@style/TextView.Semibold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:text="@{bean.title}"
+                        android:textColor="@color/heading_color"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintEnd_toStartOf="@id/tvTime"
+                        app:layout_constraintStart_toEndOf="@id/ivSportImage"
+                        app:layout_constraintTop_toTopOf="@id/sportName" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTime"
+                        formatDateToTime="@{bean.hostTimestamp}"
+                        style="@style/TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/heading_color"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/sportName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/sportName" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/locationName"
+                        style="@style/TextView.Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{bean.address}"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12ssp"
+                        android:singleLine="true"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                        app:layout_constraintStart_toStartOf="@id/sportName"
+                        app:layout_constraintTop_toBottomOf="@id/sportName" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPrice"
+                        style="@style/TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"$"+bean.price.toString()}'
+                        android:textColor="@color/heading_color"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/locationName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/locationName" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvGameTime"
+                        convertSecondsToMinutes="@{bean.duration}"
+                        style="@style/TextView.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="@id/locationName"
+                        app:layout_constraintTop_toBottomOf="@id/locationName" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDate"
+                        formatDate="@{bean.hostTimestamp}"
+                        style="@style/TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvGameTime"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvGameTime" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCardDetails"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_layout_customer_cards"
+                    tools:itemCount="2"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/consSportsData"
+                    app:layout_constraintStart_toStartOf="@id/consSportsData"
+                    app:layout_constraintEnd_toEndOf="@id/consSportsData"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consAccountBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_edit_text"
+                android:onClick="@{ v -> vm.onClick(v)}"
+                android:paddingVertical="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="@id/rvCardDetails"
+                app:layout_constraintStart_toStartOf="@id/rvCardDetails"
+                app:layout_constraintTop_toBottomOf="@id/rvCardDetails" >
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/account"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="Account Balance: $0.0"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/checkAmount"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:rotation="180"
+                    android:tint="@color/arrow_color"
+                    android:src="@drawable/iv_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/account"
+                    app:layout_constraintBottom_toBottomOf="@id/account"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consCreditCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="@id/consAccountBalance"
+                    app:layout_constraintStart_toStartOf="@id/consAccountBalance"
+                    app:layout_constraintTop_toBottomOf="@id/consAccountBalance" >
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivAccount"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:src="@drawable/iv_add_btn"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addCreditCard"
+                        style="@style/TextView.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/add_credit_card"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivAccount"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/checkAcoount"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:rotation="180"
+                        android:tint="@color/arrow_color"
+                        android:src="@drawable/iv_back"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/addCreditCard"
+                        app:layout_constraintBottom_toBottomOf="@id/addCreditCard"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/note"
+                    style="@style/TextView.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/please_note_the_following_policies"
+                    app:layout_constraintTop_toBottomOf="@id/consCreditCard"
+                    app:layout_constraintStart_toStartOf="@id/consCreditCard"
+                    app:layout_constraintEnd_toEndOf="@id/consCreditCard"/>
+
+                <ImageView
+                    android:id="@+id/dot1"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:src="@drawable/iv_dot"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toTopOf="@id/point1"
+                    app:layout_constraintStart_toStartOf="@id/note"
+                    app:tint="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/point1"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textColor="@color/grey_800"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/cancellation_policy_if_you_cancel_or_leave_a_game_you_ve_joined_50_of_the_game_fee_will_be_credited_back_to_your_account_balance"
+                    app:layout_constraintTop_toBottomOf="@id/note"
+                    app:layout_constraintStart_toEndOf="@id/dot1"
+                    app:layout_constraintEnd_toEndOf="@id/note"/>
+
+                <ImageView
+                    android:id="@+id/dot2"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:src="@drawable/iv_dot"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toTopOf="@id/point2"
+                    app:layout_constraintStart_toStartOf="@id/dot1"
+                    app:tint="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/point2"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/grey_800"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/minimum_participation_requirement_if_the_game_does_not_meet_the_required_number_of_participants_it_will_be_automatically_canceled_and_a_credit_will_be_added_to_your_account_balance"
+                    app:layout_constraintTop_toBottomOf="@id/point1"
+                    app:layout_constraintStart_toEndOf="@id/dot2"
+                    app:layout_constraintEnd_toEndOf="@id/point1"/>
+
+
+                <ImageView
+                    android:id="@+id/dot3"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:src="@drawable/iv_dot"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toTopOf="@id/point3"
+                    app:layout_constraintStart_toStartOf="@id/dot2"
+                    app:tint="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/point3"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/grey_800"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/liability_participation_is_at_your_own_risk_we_are_not_liable_for_any_injuries_sustained_during_the_event"
+                    app:layout_constraintTop_toBottomOf="@id/point2"
+                    app:layout_constraintStart_toEndOf="@id/dot3"
+                    app:layout_constraintEnd_toEndOf="@id/point2"/>
+
+                <ImageView
+                    android:id="@+id/dot4"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:src="@drawable/iv_dot"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toTopOf="@id/point4"
+                    app:layout_constraintStart_toStartOf="@id/dot2"
+                    app:tint="@color/black" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/point4"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/grey_800"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/code_of_conduct_we_maintain_a_zero_tolerance_policy_for_hateful_language_violence_or_unsportsmanlike_behavior_players_who_violate_these_terms_will_be_removed_from_the_game_without_a_refund"
+                    app:layout_constraintTop_toBottomOf="@id/point3"
+                    app:layout_constraintStart_toEndOf="@id/dot4"
+                    app:layout_constraintEnd_toEndOf="@id/point3"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvConfirmPay"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/view_color"
+            android:gravity="center"
+            android:onClick="@{ v -> vm.onClick(v)}"
+            android:text="@string/confirm_and_pay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toTopOf="@id/agreeTerms"
+            app:layout_constraintStart_toStartOf="@id/agreeTerms"
+            app:layout_constraintEnd_toEndOf="@id/agreeTerms"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/agreeTerms"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_8ssp"
+            android:textColor="@color/grey_800"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/by_submitting_payment_you_agree_to_our_terms_and_conditions"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

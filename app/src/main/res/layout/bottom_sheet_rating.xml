@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="callback"
+            type="com.pickup.sports.utils.BaseCustomBottomSheet.Listener" />
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetGameByIdApiResponse.Game" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_bottom_sheet">
+        
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvThanks"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thank_you_for_playing"
+            android:textSize="@dimen/_18ssp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consSportsData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvThanks">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivSportImage"
+                setImages="@{bean.photos[0]}"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/iv_basket_ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sportName"
+                style="@style/TextView.Semibold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:singleLine="true"
+                android:text="@{bean.SportsData.name}"
+                android:textColor="@color/heading_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@id/tvTime"
+                app:layout_constraintStart_toEndOf="@id/ivSportImage"
+                app:layout_constraintTop_toTopOf="@id/sportName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTime"
+                style="@style/TextView.Medium"
+                formatDateToTime="@{bean.hostTimestamp}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/heading_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="@id/sportName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/sportName" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/locationName"
+                style="@style/TextView.Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{bean.address}"
+                android:textColor="@color/grey_600"
+                android:textSize="@dimen/_12ssp"
+                android:singleLine="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="@id/sportName"
+                app:layout_constraintTop_toBottomOf="@id/sportName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrice"
+                style="@style/TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{"$"+bean.price.toString()}'
+                android:textColor="@color/heading_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/locationName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/locationName" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGameTime"
+                style="@style/TextView.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                convertSecondsToMinutes="@{bean.duration}"
+                android:textColor="@color/grey_600"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="@id/locationName"
+                app:layout_constraintTop_toBottomOf="@id/locationName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDate"
+                style="@style/TextView.Medium"
+                convertDate="@{bean.hostTimestamp}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/grey_600"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/tvGameTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvGameTime" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <View
+            android:id="@+id/iewLine1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@color/view_line"
+            app:layout_constraintTop_toTopOf="@id/hostName"
+            app:layout_constraintBottom_toBottomOf="@id/hostName"
+            app:layout_constraintStart_toStartOf="@id/consSportsData"
+            app:layout_constraintEnd_toStartOf="@id/hostName"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/hostName"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/heading_color"
+            android:text='@{"Your host was " + bean.hostData.firstName + " " + (bean.hostData.lastName != null ? bean.hostData.lastName : "")}'
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@id/consSportsData"
+            app:layout_constraintStart_toStartOf="@id/consSportsData"
+            app:layout_constraintEnd_toEndOf="@id/consSportsData"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@color/view_line"
+            app:layout_constraintTop_toTopOf="@id/hostName"
+            app:layout_constraintBottom_toBottomOf="@id/hostName"
+            app:layout_constraintStart_toEndOf="@id/hostName"
+            app:layout_constraintEnd_toEndOf="@id/consSportsData"/>
+        
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/hostName"
+            app:layout_constraintStart_toStartOf="@id/consSportsData"
+            app:layout_constraintEnd_toEndOf="@id/consSportsData">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star1"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/iv_rating_star"
+                android:tint="@color/slate_300"
+                android:onClick="@{v -> callback.onViewClick(v)}"
+                app:layout_constraintEnd_toStartOf="@+id/star2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTerrible"
+                style="@style/TextView.DmSansMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terrible"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@id/star1"
+                app:layout_constraintStart_toStartOf="@id/star1"
+                app:layout_constraintEnd_toEndOf="@id/star1"/>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star2"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/iv_rating_star"
+                android:tint="@color/slate_300"
+                android:onClick="@{v -> callback.onViewClick(v)}"
+
+                app:layout_constraintEnd_toStartOf="@id/star3"
+                app:layout_constraintTop_toTopOf="@id/star1"
+                app:layout_constraintBottom_toBottomOf="@id/star1"
+                app:layout_constraintStart_toEndOf="@id/star1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBad"
+                style="@style/TextView.DmSansMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bad"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@id/star2"
+                app:layout_constraintStart_toStartOf="@id/star2"
+                app:layout_constraintEnd_toEndOf="@id/star2"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star3"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/iv_rating_star"
+                android:tint="@color/slate_300"
+                android:onClick="@{v -> callback.onViewClick(v)}"
+
+                app:layout_constraintTop_toTopOf="@id/star2"
+                app:layout_constraintEnd_toStartOf="@id/star4"
+                app:layout_constraintBottom_toBottomOf="@id/star2"
+                app:layout_constraintStart_toEndOf="@id/star2"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOkay"
+                style="@style/TextView.DmSansMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/okay"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@id/star3"
+                app:layout_constraintStart_toStartOf="@id/star3"
+                app:layout_constraintEnd_toEndOf="@id/star3"/>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star4"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/iv_rating_star"
+                android:tint="@color/slate_300"
+                android:onClick="@{v -> callback.onViewClick(v)}"
+
+                app:layout_constraintStart_toEndOf="@id/star3"
+                app:layout_constraintEnd_toStartOf="@id/star5"
+                app:layout_constraintTop_toTopOf="@id/star3"
+                app:layout_constraintBottom_toBottomOf="@id/star3"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGood"
+                style="@style/TextView.DmSansMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/good"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@id/star4"
+                app:layout_constraintStart_toStartOf="@id/star4"
+                app:layout_constraintEnd_toEndOf="@id/star4"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/star5"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/iv_rating_star"
+                android:tint="@color/slate_300"
+                android:onClick="@{v -> callback.onViewClick(v)}"
+
+                app:layout_constraintStart_toEndOf="@+id/star4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/star4"
+                app:layout_constraintBottom_toBottomOf="@id/star4"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAmazing"
+                style="@style/TextView.DmSansMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amazing"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@id/star5"
+                app:layout_constraintStart_toStartOf="@id/star5"
+                app:layout_constraintEnd_toEndOf="@id/star5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvClickOfHelp"
+            style="@style/TextView.Regular"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/heading_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/had_an_issue_click_for_help"
+            app:layout_constraintTop_toBottomOf="@id/consRating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubmit"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/view_color"
+            android:gravity="center"
+            android:onClick="@{v -> callback.onViewClick(v)}"
+            android:text="@string/submit"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="@id/consRating"
+            app:layout_constraintEnd_toEndOf="@id/consRating"
+            app:layout_constraintTop_toBottomOf="@id/tvClickOfHelp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

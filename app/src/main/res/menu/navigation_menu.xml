@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item-->
+<!--        android:id="@+id/pickUpSports"-->
+<!--        android:icon="@drawable/iv_my_games"-->
+<!--        android:title="Pickup Sports" />-->
+    <item
+        android:id="@+id/myGames"
+        android:icon="@drawable/iv_my_games"
+        android:title="My Games" />
+    <item
+        android:id="@+id/hostGames"
+        android:icon="@drawable/iv_host_game"
+        android:title="Host Games" />
+    <item
+        android:id="@+id/referFriend"
+        android:icon="@drawable/iv_refer_friend"
+        android:title="Refer Friends" />
+    <item
+        android:id="@+id/earnings"
+        android:icon="@drawable/iv_earnings"
+        android:title="Earnings" />
+    <item
+        android:id="@+id/messages"
+        android:icon="@drawable/iv_messages"
+        android:title="Messages" />
+</menu>

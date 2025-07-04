@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_15sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/receiveProfileNAme"
+            android:background="@drawable/bg_sender_name"
+            android:backgroundTint="@color/state_600"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:text="R"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/leftChat"
+            android:background="@drawable/bg_edit_text"
+            android:backgroundTint="@color/view_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/view_color"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:textColorLink="@color/blue"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="fdsas"
+            android:maxWidth="@dimen/_200sdp"
+            app:layout_constraintTop_toTopOf="@id/receiveProfileNAme"
+            app:layout_constraintStart_toEndOf="@id/receiveProfileNAme"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDoubleTick"
+            android:layout_width="@dimen/_12ssp"
+            android:layout_height="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:visibility="gone"
+            android:src="@drawable/iv_double_tick"
+            app:layout_constraintTop_toBottomOf="@id/leftChat"
+            app:layout_constraintStart_toStartOf="@id/leftChat"/>
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/receiveTime"
+            style="@style/TextView.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_7_20_am"
+            android:textSize="@dimen/_8ssp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/leftChat"
+            app:layout_constraintStart_toStartOf="@id/leftChat"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

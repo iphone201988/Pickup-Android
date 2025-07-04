@@ -1,0 +1,25 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    tools:ignore="InvalidNavigation">
+
+    <action
+        android:id="@+id/navigateToLoginFragment"
+        app:destination="@id/fragmentLogin" />
+
+    <action
+        android:id="@+id/navigateToSignupFragment"
+        app:destination="@id/fragmentSignup" />
+
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="sports.ui.auth.LoginFragment"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="sports.ui.auth.SignupFragment"
+        tools:layout="@layout/fragment_signup" />
+</navigation>

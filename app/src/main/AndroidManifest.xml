@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.home_modules.DummyActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".ui.host_game_details.HostGameDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.web_view_module.WebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.reset_password.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.verification.VerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.forgot_password.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.chat_module.ChatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.home_modules.repeat_module.RepeatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.create_host_game.CreateHostGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.add_card_module.AddCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.payment_policy.PaymentPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.game_details.GameDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.home_modules.help_module.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.setting_module.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.change_password.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.edit_profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.account_module.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.location_module.LocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.select_sports.SelectSportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_modules.HomeDashBoardActivity"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:host="pickup-sports.com" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="sports.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.splash.WelcomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.base.permission.PermissionsActivity"
+            android:screenOrientation="fullSensor" />
+
+        <service
+            android:name=".utils.NotificationClass"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC-wzD2OUDaWKiOTEnzPm_ZBk6QcJWxkpY" />
+    </application>
+
+</manifest>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetMyGames" />
+        <variable
+            name="pos"
+            type="Integer" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="@dimen/_16ssp"
+            android:layout_height="@dimen/_16ssp"
+            android:src="@drawable/iv_calender"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/state_600"
+            android:textSize="@dimen/_10ssp"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:text="@{bean.date}"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintTop_toTopOf="@id/ivIcon"
+            app:layout_constraintBottom_toBottomOf="@id/ivIcon"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/view_line"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            app:layout_constraintEnd_toStartOf="@id/dropDown"
+            app:layout_constraintTop_toTopOf="@id/tvDate"
+            app:layout_constraintBottom_toBottomOf="@id/tvDate"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dropDown"
+            android:layout_width="@dimen/_22ssp"
+            android:layout_height="@dimen/_22ssp"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:src="@drawable/iv_drop_down"
+            android:padding="@dimen/_5sdp"
+            android:rotation="@{bean.visible ? 180 : 0}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvDate"
+            app:layout_constraintBottom_toBottomOf="@id/tvDate"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventGame"
+            childMyGamesAdapter="@{bean.gameList}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="@{bean.visible? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/dropDown"
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toStartOf="@id/ivIcon"
+            app:layout_constraintTop_toBottomOf="@id/tvDate"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_layout_my_games_data" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

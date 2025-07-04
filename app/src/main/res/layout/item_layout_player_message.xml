@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetAllChatApiResponse.Chat" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+        android:paddingVertical="@dimen/_10ssp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/messageCount"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:background="@drawable/bg_message_count"
+            android:elevation="@dimen/_3sdp"
+            android:textColor="@color/white"
+            android:text="@{bean.unSeenMessagesCount.toString()}"
+            android:textSize="@dimen/_8ssp"
+            android:visibility='@{bean.unSeenMessagesCount == 0 ? View.GONE : View.VISIBLE}'
+            android:gravity="center"
+            android:layout_marginStart="-3dp"
+            app:layout_constraintTop_toTopOf="@id/profileImage"
+            app:layout_constraintStart_toStartOf="@id/profileImage"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImage"
+            app:loadProfileImage="@{bean.participants}"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/iv_dumm"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/personName"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            setNames="@{bean.participants}"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/gray_950"
+            app:layout_constraintStart_toEndOf="@id/profileImage"
+            app:layout_constraintTop_toTopOf="@id/profileImage"/>
+
+        <ImageView
+            android:id="@+id/dotImage"
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:src="@drawable/iv_dot"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="@id/personName"
+            app:layout_constraintBottom_toBottomOf="@id/personName"
+            app:layout_constraintStart_toEndOf="@id/personName"/>
+
+
+        <TextView
+            android:id="@+id/time"
+            style="@style/TextView.Regular"
+            formatTime="@{bean.lastMessage.updatedAt}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/dotImage"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintTop_toTopOf="@id/personName"
+            app:layout_constraintBottom_toBottomOf="@id/personName"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locationName"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:singleLine="true"
+            setCity="@{bean.participants}"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toBottomOf="@id/personName"
+            app:layout_constraintStart_toStartOf="@id/personName"
+            app:layout_constraintEnd_toEndOf="@id/sideArrow"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sideArrow"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/iv_side_arrow"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:tint="@color/grey_400"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

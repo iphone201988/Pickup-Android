@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="callback"
+            type="com.pickup.sports.utils.BaseCustomBottomSheet.Listener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:paddingBottom="@dimen/_10sdp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDeleteIcon"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:src="@drawable/iv_delete_icon"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCancelDelete"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/cancel_game_delete_post"
+            app:layout_constraintTop_toBottomOf="@id/ivDeleteIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            style="@style/TextView.Regular"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/grey_700"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:text="@string/cancel_game_will_delete_this_individual_game_and_refund_all_players_automatically_delete_post_will_cancel_this_game_as_well_as_delete_all_repeat_scheduling"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCancelDelete"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cancel"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/grey_800"
+            android:textSize="@dimen/_12ssp"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            app:layout_constraintEnd_toStartOf="@id/cancelGame"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/slate_100"
+
+            app:layout_constraintTop_toBottomOf="@id/description"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cancelGame"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_game"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/pink"
+            android:gravity="center"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/deletePost"
+            app:layout_constraintTop_toTopOf="@id/cancel"
+            app:layout_constraintBottom_toBottomOf="@id/cancel"
+            app:layout_constraintStart_toEndOf="@id/cancel"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/deletePost"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_post"
+            android:paddingVertical="@dimen/_10sdp"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/pink"
+            android:gravity="center"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintStart_toEndOf="@id/cancelGame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cancelGame"
+            app:layout_constraintBottom_toBottomOf="@id/cancelGame"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.HostedGame" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> callback.onItemClick(v, bean,pos)}"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivSportImage"
+            setIcon="@{bean.image}"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/iv_basket_ball"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sportsName"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{bean.gameName}"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toStartOf="@id/time"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/gray_950"
+            app:layout_constraintStart_toEndOf="@id/ivSportImage"
+            app:layout_constraintTop_toTopOf="@id/ivSportImage"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/day"
+            style="@style/TextView.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_600"
+            android:textSize="@dimen/_10ssp"
+            android:text="@{bean.date}"
+            android:layout_marginTop="@dimen/_3sdp"
+            app:layout_constraintTop_toBottomOf="@id/personName"
+            app:layout_constraintStart_toStartOf="@id/personName"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/time"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.time}"
+            android:textColor="@color/heading_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sportsName"
+            app:layout_constraintBottom_toBottomOf="@id/sportsName"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/personName"
+            style="@style/TextView.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.name}"
+            android:singleLine="true"
+            android:textColor="@color/grey_600"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="@id/sportsName"
+            app:layout_constraintTop_toBottomOf="@id/sportsName" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStar"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:src="@drawable/iv_rating_star"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintStart_toEndOf="@id/personName"
+            app:layout_constraintBottom_toBottomOf="@id/personName"
+            app:layout_constraintTop_toTopOf="@id/personName"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRating"
+            style="@style/TextView.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.rating}"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/grey_600"
+            app:layout_constraintStart_toEndOf="@id/ivStar"
+            app:layout_constraintTop_toTopOf="@id/personName"
+            app:layout_constraintBottom_toBottomOf="@id/personName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ratingNo"
+            style="@style/TextView.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.totalRating}"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/grey_600"
+            android:layout_marginStart="@dimen/_3sdp"
+            app:layout_constraintTop_toTopOf="@id/tvRating"
+            app:layout_constraintBottom_toBottomOf="@id/tvRating"
+            app:layout_constraintStart_toEndOf="@id/tvRating"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.price}"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/heading_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvRating"
+            app:layout_constraintBottom_toBottomOf="@id/tvRating"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/_10ssp"
+            android:layout_height="@dimen/_10ssp"
+            android:src="@drawable/iv_profile"
+            android:tint="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/day"
+            app:layout_constraintBottom_toBottomOf="@id/day"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.player}"
+            android:textColor="@color/grey_600"
+            android:layout_marginEnd="@dimen/_3sdp"
+            app:layout_constraintTop_toTopOf="@id/day"
+            app:layout_constraintBottom_toBottomOf="@id/day"
+            app:layout_constraintEnd_toStartOf="@id/icon"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

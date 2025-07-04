@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.pickup.sports.ui.home_modules.earnings_module.EarningFragmentVm" />
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetBalanceApiResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home_modules.earnings_module.EarningFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/earnings"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/iv_back"
+            android:visibility="gone"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/view_line"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"/>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewLine">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_10sdp">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/earnings"
+                    style="@style/TextView.DmSansMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/earnings"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/dark_black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consCurrentBalance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintTop_toBottomOf="@id/earnings"
+                    app:layout_constraintStart_toStartOf="@id/earnings"
+                    app:layout_constraintEnd_toEndOf="@id/earnings">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/iv_doller_bg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/currentBalance"
+                        style="@style/TextView.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/grey_600"
+                        android:text="@string/current_balance"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        app:layout_constraintTop_toTopOf="@id/image"
+                        app:layout_constraintStart_toEndOf="@id/image"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/showCurrentBalance"
+                        style="@style/TextView.Semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"$" + String.format("%.2f", bean.total != null ? bean.total : 0.00)}'                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/_18ssp"
+                        app:layout_constraintTop_toBottomOf="@id/currentBalance"
+                        app:layout_constraintStart_toStartOf="@id/currentBalance"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consHostEarning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_edit_text"
+                app:layout_constraintTop_toBottomOf="@id/earnings"
+                app:layout_constraintStart_toStartOf="@id/earnings"
+                app:layout_constraintEnd_toEndOf="@id/earnings">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/hostImage"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_doller_bg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hostEarning"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/grey_600"
+                    android:text="@string/total_host_earnings"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toTopOf="@id/hostImage"
+                    app:layout_constraintStart_toEndOf="@id/hostImage"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/showHostBalance"
+                    style="@style/TextView.Semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{"$" + String.format("%.2f", bean.host != null ? bean.host : 0.00)}'
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintTop_toBottomOf="@id/hostEarning"
+                    app:layout_constraintStart_toStartOf="@id/hostEarning"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consReferral"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintTop_toBottomOf="@id/consHostEarning"
+                    app:layout_constraintStart_toStartOf="@id/consHostEarning"
+                    app:layout_constraintEnd_toEndOf="@id/consHostEarning">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/referralImage"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/iv_doller_bg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/referralEarning"
+                        style="@style/TextView.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/grey_600"
+                        android:text="@string/total_referral_earnings"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        app:layout_constraintTop_toTopOf="@id/referralImage"
+                        app:layout_constraintStart_toEndOf="@id/referralImage"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/showRefferalEarning"
+                        style="@style/TextView.Semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"$" + String.format("%.2f", bean.referrals != null ? bean.referrals : 0.00)}'
+                        android:textSize="@dimen/_18ssp"
+                        app:layout_constraintTop_toBottomOf="@id/referralEarning"
+                        app:layout_constraintStart_toStartOf="@id/referralEarning"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consNextPayOut"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintEnd_toEndOf="@id/consReferral"
+                    app:layout_constraintTop_toBottomOf="@id/consReferral"
+                    app:layout_constraintStart_toStartOf="@id/consReferral">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/payoutImage"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/iv_doller_bg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nextPayout"
+                        style="@style/TextView.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/grey_600"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/next_payout"
+                        app:layout_constraintTop_toTopOf="@id/payoutImage"
+                        app:layout_constraintStart_toEndOf="@id/payoutImage"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/showPayout"
+                        style="@style/TextView.Semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"$" + String.format("%.2f", bean.payout != null ? bean.payout : 0.00)}'
+                        android:textSize="@dimen/_18ssp"
+                        app:layout_constraintTop_toBottomOf="@id/nextPayout"
+                        app:layout_constraintStart_toStartOf="@id/nextPayout"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:formattedDate="@{bean.nextPayoutDate}"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        app:layout_constraintStart_toEndOf="@id/showPayout"
+                        app:layout_constraintBottom_toBottomOf="@id/showPayout"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/deposit"
+                    style="@style/TextView.DmSansMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deposits"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/dark_black"
+                    app:layout_constraintTop_toBottomOf="@id/consNextPayOut"
+                    app:layout_constraintStart_toStartOf="@id/consNextPayOut"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCardList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/item_layout_card"
+                    tools:itemCount="1"
+                    app:layout_constraintTop_toBottomOf="@id/deposit"
+                    app:layout_constraintStart_toStartOf="@id/consNextPayOut"
+                    app:layout_constraintEnd_toEndOf="@id/consNextPayOut"/>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consAddBankAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_20sdp"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintTop_toBottomOf="@id/rvCardList"
+                    app:layout_constraintStart_toStartOf="@id/rvCardList"
+                    app:layout_constraintEnd_toEndOf="@id/rvCardList">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivAccount"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:src="@drawable/iv_add_btn"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddBankAccount"
+                        style="@style/TextView.DmSansMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:text="@string/add_a_bank_account"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintEnd_toStartOf="@id/ivEnter"
+                        app:layout_constraintTop_toTopOf="@id/ivAccount"
+                        app:layout_constraintBottom_toBottomOf="@id/ivAccount"
+                        app:layout_constraintStart_toEndOf="@id/ivAccount"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivEnter"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/iv_back"
+                        android:rotation="180"
+                        android:tint="@color/arrow_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvAddBankAccount"
+                        app:layout_constraintBottom_toBottomOf="@id/tvAddBankAccount"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

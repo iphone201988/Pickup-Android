@@ -1,0 +1,26 @@
+<!-- bottom_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:title="Home" />
+    <item
+        android:id="@+id/favorites"
+        android:title="Favorites" />
+    <item
+        android:id="@+id/jobs"
+        android:title="Jobs" />
+    <item
+        android:id="@+id/notifications"
+        android:title="Notifications" />
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile" />
+
+
+</menu>
+
+    <!-- layout.xml -->

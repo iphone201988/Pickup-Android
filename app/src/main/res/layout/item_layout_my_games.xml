@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetMyGamesApiResponse.Game" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+        <variable
+            name="callback"
+            type="com.pickup.sports.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consMain"
+        android:onClick="@{ v -> callback.onItemClick(v,bean,pos)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivSportImage"
+            shapeImage="@{bean.photos[0]}"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/iv_basket_ball"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sportsName"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.sportsData.name}"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/gray_950"
+            app:layout_constraintStart_toEndOf="@id/ivSportImage"
+            app:layout_constraintTop_toTopOf="@id/ivSportImage"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/location"
+            style="@style/TextView.Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_8ssp"
+            android:text="@{bean.address}"
+            android:singleLine="true"
+            android:textColor="@color/grey_800"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintStart_toEndOf="@id/sportsName"
+            app:layout_constraintEnd_toStartOf="@id/time"
+            app:layout_constraintTop_toTopOf="@id/sportsName"
+            app:layout_constraintBottom_toBottomOf="@id/sportsName"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/time"
+            formatDateToTime="@{bean.hostTimestamp}"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/heading_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sportsName"
+            app:layout_constraintBottom_toBottomOf="@id/sportsName"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/star"
+            android:layout_width="@dimen/_12ssp"
+            android:layout_height="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:src="@drawable/iv_black_star"
+            app:layout_constraintTop_toBottomOf="@id/sportsName"
+            app:layout_constraintStart_toStartOf="@id/sportsName"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rating"
+            style="@style/TextView.Semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.hostData.rating.toString()}"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/grey_600"
+            app:layout_constraintStart_toEndOf="@id/star"
+            app:layout_constraintTop_toTopOf="@id/star"
+            android:layout_marginStart="@dimen/_5sdp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ratingCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_600"
+            android:text='@{"(" + bean.hostData.ratingsCount + " Ratings)"}'
+            android:layout_marginStart="@dimen/_3sdp"
+            app:layout_constraintTop_toTopOf="@id/rating"
+            app:layout_constraintBottom_toBottomOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/rating"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dot"
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:src="@drawable/iv_dot"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintStart_toEndOf="@id/ratingCount"
+            app:layout_constraintTop_toTopOf="@id/ratingCount"
+            app:layout_constraintBottom_toBottomOf="@id/ratingCount"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/personName"
+            style="@style/TextView.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textColor="@color/grey_600"
+            android:textSize="@dimen/_10ssp"
+            android:text='@{bean.hostData.firstName + (bean.hostData.lastName != null ? " " + bean.hostData.lastName : "")}'
+            android:singleLine="true"
+            app:layout_constraintEnd_toStartOf="@id/price"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="@id/rating"
+            app:layout_constraintBottom_toBottomOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/dot"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"$"+bean.price.toString()}'
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/heading_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/personName"
+            app:layout_constraintBottom_toBottomOf="@id/personName"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            style="@style/TextView.Semibold"
+            formatDateToMonthDay="@{bean.hostTimestamp}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/grey_600"
+            app:layout_constraintTop_toBottomOf="@id/star"
+            app:layout_constraintStart_toStartOf="@id/star"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/players"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10ssp"
+            android:text='@{bean.slotIds.size()+"/"+bean.maximumSlots}'            android:textColor="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/date"
+            app:layout_constraintBottom_toBottomOf="@id/date"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPlayerIcon"
+            android:layout_width="@dimen/_10ssp"
+            android:layout_height="@dimen/_10ssp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:src="@drawable/iv_person"
+            app:slotCount="@{bean.slotIds.size()}"
+            app:minSlots="@{bean.minimumSlots}"
+            app:layout_constraintTop_toTopOf="@id/players"
+            app:layout_constraintBottom_toBottomOf="@id/players"
+            app:layout_constraintEnd_toStartOf="@id/players"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

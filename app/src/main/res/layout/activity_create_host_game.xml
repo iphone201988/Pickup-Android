@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.pickup.sports.ui.home_modules.create_host_game.CreateHostGameActivityVm" />
+
+        <variable
+            name="bean"
+            type="com.pickup.sports.data.model.GetGameByIdApiResponse.Game" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home_modules.create_host_game.CreateHostGameActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/host_game"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/heading_color"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/iv_back"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/view_line"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@id/tvPublishGame"
+            app:layout_constraintTop_toBottomOf="@id/viewLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp"
+                android:background="@color/white">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPleaseFillForm"
+                    style="@style/TextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/please_fill_up_the_form_to_host_a_new_game"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSelectSport"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:focusable="false"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:hint="@string/select_sport"
+                    android:text="@{bean.sportsData.name}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/tvPleaseFillForm"
+                    app:layout_constraintStart_toStartOf="@id/tvPleaseFillForm"
+                    app:layout_constraintEnd_toEndOf="@id/tvPleaseFillForm"/>
+                
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/sportDrop"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/iv_drop_down"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/etSelectSport"
+                    app:layout_constraintTop_toTopOf="@id/etSelectSport"
+                    app:layout_constraintBottom_toBottomOf="@id/etSelectSport"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:hint="Title"
+                    android:singleLine="true"
+                    android:text="@{bean.title}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etSelectSport"
+                    app:layout_constraintStart_toStartOf="@id/etSelectSport"
+                    app:layout_constraintEnd_toEndOf="@id/etSelectSport"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:hint="Enter location"
+                    android:singleLine="true"
+                    android:text="@{bean.address}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etTitle"
+                    app:layout_constraintStart_toStartOf="@id/etTitle"
+                    app:layout_constraintEnd_toEndOf="@id/etTitle"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/locationCard"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_160sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/etLocation"
+                    app:layout_constraintStart_toStartOf="@id/etLocation"
+                    app:layout_constraintTop_toBottomOf="@id/etLocation">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvEnterLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_layout_filter" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:hint="Description"
+                    android:singleLine="true"
+                    android:text="@{bean.description}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etLocation"
+                    app:layout_constraintStart_toStartOf="@id/etLocation"
+                    app:layout_constraintEnd_toEndOf="@id/etLocation"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMinimumPlayer"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:hint="Minimum Players"
+                    android:text="@{bean.minimumSlots.toString()}"
+                    android:maxLength="3"
+                    android:inputType="number"
+                    android:onClick="@{v ->vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etDescription"
+                    app:layout_constraintStart_toStartOf="@id/etDescription"
+                    app:layout_constraintEnd_toEndOf="@id/etDescription"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/minPlayerDrop"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/iv_drop_down"
+                    android:visibility="gone"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/etMinimumPlayer"
+                    app:layout_constraintTop_toTopOf="@id/etMinimumPlayer"
+                    app:layout_constraintBottom_toBottomOf="@id/etMinimumPlayer"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMaximumPlayer"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:maxLength="100"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:hint="Maximum Players"
+                    android:text="@{bean.maximumSlots.toString()}"
+                    android:inputType="number"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etMinimumPlayer"
+                    app:layout_constraintStart_toStartOf="@id/etMinimumPlayer"
+                    app:layout_constraintEnd_toEndOf="@id/etMinimumPlayer"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/maxPlayerDrop"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/iv_drop_down"
+                    android:visibility="gone"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etMaximumPlayer"
+                    app:layout_constraintBottom_toBottomOf="@id/etMaximumPlayer"
+                    app:layout_constraintEnd_toEndOf="@id/etMaximumPlayer"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:hint="Price"
+                    android:text="@{bean.price.toString()}"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etMaximumPlayer"
+                    app:layout_constraintStart_toStartOf="@id/etMaximumPlayer"
+                    app:layout_constraintEnd_toEndOf="@id/etMaximumPlayer"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/dollerSign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textColor="@color/heading_color"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etPrice"
+                    app:layout_constraintBottom_toBottomOf="@id/etPrice"
+                    app:layout_constraintStart_toStartOf="@id/etPrice"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDate"
+                    setEditFormatDate="@{bean.hostTimestamp}"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:hint="Date"
+                    android:focusable="false"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etPrice"
+                    app:layout_constraintStart_toStartOf="@id/etPrice"
+                    app:layout_constraintEnd_toEndOf="@id/etPrice"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCalender"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:src="@drawable/iv_calender"
+                    app:layout_constraintTop_toTopOf="@id/etDate"
+                    app:layout_constraintBottom_toBottomOf="@id/etDate"
+                    app:layout_constraintEnd_toEndOf="@id/etDate"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etTime"
+                    setEditFormattedTime="@{bean.hostTimestamp}"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:hint="Time"
+                    android:focusable="false"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etDate"
+                    app:layout_constraintStart_toStartOf="@id/etDate"
+                    app:layout_constraintEnd_toEndOf="@id/etDate"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivTime"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/iv_clock"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etTime"
+                    app:layout_constraintEnd_toEndOf="@id/etTime"
+                    app:layout_constraintBottom_toBottomOf="@id/etTime"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etRepeat"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:hint="Time"
+                    android:focusable="false"
+                    android:onClick="@{ v ->vm.onClick(v)}"
+                    android:text="@string/repeat"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etTime"
+                    app:layout_constraintStart_toStartOf="@id/etTime"
+                    app:layout_constraintEnd_toEndOf="@id/etTime"/>
+
+
+
+                <TextView
+                    android:id="@+id/day"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textColor="@color/grey_400"
+                   app:layout_constraintEnd_toStartOf="@id/sidArrow"
+                    app:layout_constraintTop_toTopOf="@id/etRepeat"
+                    app:layout_constraintEnd_toEndOf="@id/etRepeat"
+                    app:layout_constraintBottom_toBottomOf="@id/etRepeat"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/sidArrow"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/iv_back"
+                    android:rotation="180"
+                    android:onClick="@{ v ->vm.onClick(v)}"
+                    android:tint="@color/arrow_color"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toTopOf="@id/etRepeat"
+                    app:layout_constraintBottom_toBottomOf="@id/etRepeat"
+                    app:layout_constraintEnd_toEndOf="@id/etRepeat"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDuration"
+                     setFormattedDuration="@{bean.duration}"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:focusable="false"
+                    android:hint="Enter Game Duration"
+                    android:onClick="@{ v -> vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/heading_color"
+                    android:textColorHint="@color/grey_400"
+                    app:layout_constraintTop_toBottomOf="@id/etRepeat"
+                    app:layout_constraintStart_toStartOf="@id/etRepeat"
+                    app:layout_constraintEnd_toEndOf="@id/etRepeat"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivUploadImage"
+                    android:layout_width="0dp"
+                    setImages="@{bean.photos[0]}"
+                    android:background="@drawable/bg_edit_text"
+                    android:layout_height="@dimen/_140sdp"
+                    android:scaleType="centerCrop"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/etDuration"
+                    app:layout_constraintStart_toStartOf="@id/etDuration"
+                    app:layout_constraintEnd_toEndOf="@id/etDuration"/>
+
+                <!-- ProgressBar (Initially Hidden) -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="@id/ivUploadImage"
+                    app:layout_constraintBottom_toBottomOf="@id/ivUploadImage"
+                    app:layout_constraintStart_toStartOf="@id/ivUploadImage"
+                    app:layout_constraintEnd_toEndOf="@id/ivUploadImage"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAddImage"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/iv_add_image"
+                    app:layout_constraintTop_toTopOf="@id/ivUploadImage"
+                    app:layout_constraintStart_toStartOf="@id/ivUploadImage"
+                    app:layout_constraintEnd_toEndOf="@id/ivUploadImage"
+                    app:layout_constraintBottom_toBottomOf="@id/ivUploadImage"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUploadPhotos"
+                    style="@style/TextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:text="@string/upload_photos"
+                    app:layout_constraintTop_toBottomOf="@id/ivAddImage"
+                    app:layout_constraintStart_toStartOf="@id/ivUploadImage"
+                    app:layout_constraintEnd_toEndOf="@id/ivUploadImage"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPublishGame"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/view_color"
+            android:gravity="center"
+            android:onClick="@{ v -> vm.onClick(v)}"
+            android:text="@string/publish_game"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCross"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:padding="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:src="@drawable/iv_cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView.DmSansRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/piccup_uses_stripe_to_connect_your_account"
+            app:layout_constraintTop_toBottomOf="@id/ivCross"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consMain"
+            android:layout_width="0dp"
+            android:background="@drawable/bg_edit_text"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintStart_toStartOf="@id/heading"
+            app:layout_constraintEnd_toEndOf="@id/heading">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFlash"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/iv_flash"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/connectInSeconds"
+                style="@style/TextView.DmSansSemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:text="@string/connect_in_seconds"
+                app:layout_constraintTop_toTopOf="@id/ivFlash"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/ivFlash"
+                app:layout_constraintStart_toEndOf="@id/ivFlash"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/connectDescription"
+                style="@style/TextView.DmSansRegular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/dark_blue"
+                android:text="@string/_8000_apps_trust_stripe_to_quickly_connect_to_financial_institutions"
+                app:layout_constraintTop_toBottomOf="@id/connectInSeconds"
+                app:layout_constraintStart_toStartOf="@id/connectInSeconds"
+                app:layout_constraintEnd_toEndOf="@id/connectInSeconds"/>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivShield"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/iv_shield"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/connectDescription"
+                app:layout_constraintStart_toStartOf="@id/ivFlash"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDataSage"
+                style="@style/TextView.DmSansSemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:text="@string/keep_your_data_sage"
+                app:layout_constraintTop_toTopOf="@id/ivShield"
+                app:layout_constraintStart_toEndOf="@id/ivShield"
+                app:layout_constraintBottom_toBottomOf="@id/ivShield"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dataSageDescription"
+                style="@style/TextView.DmSansRegular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:textSize="@dimen/_10ssp"
+                android:text="@string/plaid_uses_best_in_class_encription_to_help_protect_your_data"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintTop_toBottomOf="@id/tvDataSage"
+                app:layout_constraintStart_toStartOf="@id/tvDataSage"
+                app:layout_constraintEnd_toEndOf="@id/tvDataSage"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrivacyPolicy"
+            style="@style/TextView.DmSansRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/grey_400"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/by_continuing_you_agree_to_stripe_s_privacy_policy_and_to_receiving_updates_on_plaid_com"
+            app:layout_constraintTop_toBottomOf="@id/consMain"
+            app:layout_constraintStart_toStartOf="@id/consMain"
+            app:layout_constraintEnd_toEndOf="@id/consMain"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPublishGame"
+            style="@style/TextView.Semibold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_dark_btn"
+            android:backgroundTint="@color/view_color"
+            android:gravity="center"
+            android:text="Continue"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@id/tvPrivacyPolicy"
+            app:layout_constraintStart_toStartOf="@id/tvPrivacyPolicy"
+            app:layout_constraintEnd_toEndOf="@id/tvPrivacyPolicy"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
