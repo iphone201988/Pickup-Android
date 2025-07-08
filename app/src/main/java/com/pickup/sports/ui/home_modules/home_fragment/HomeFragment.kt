@@ -267,19 +267,36 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             val data = HashMap<String,Any>()
             data["page"] = 1
             data["userId"] = sharedPrefManager.getCurrentUser()?.userId.toString()
-            if (lat != 0.0 && long != 0.0){
-                data["latitude"] = lat
-                data["longitude"] =long
+            if (searchLat != 0.0 && searchLong != 0.0) {
+                data["latitude"] = searchLat
+                data["longitude"] = searchLong
+            } else {
+                if (lat != 0.0 && long != 0.0) {
+                    data["latitude"] = lat
+                    data["longitude"] = long
+                }
             }
+            if (radius != null) {
+                data["radius"] = radius!!
+            }
+
 
             viewModel.getAllPlayer(data, Constants.GET_ALL_PLAYER)
         }
         else{
             val data = HashMap<String,Any>()
             data["page"] = 1
-            if (lat != 0.0 && long != 0.0){
-                data["latitude"] = lat
-                data["longitude"] =long
+            if (searchLat != 0.0 && searchLong != 0.0) {
+                data["latitude"] = searchLat
+                data["longitude"] = searchLong
+            } else {
+                if (lat != 0.0 && long != 0.0) {
+                    data["latitude"] = lat
+                    data["longitude"] = long
+                }
+            }
+            if (radius != null) {
+                data["radius"] = radius!!
             }
             viewModel.getAllPlayer(data, Constants.GET_ALL_PLAYER)
         }
@@ -440,18 +457,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         "getAllPlayer"  ->{
                             val myDataModel : GetAllPlayersApiResponse ?= ImageUtils.parseJson(it.data.toString())
                             if (myDataModel != null){
-                                binding.playerCount.text = "Results: ${myDataModel.totalUsers} Players"
-                                if (myDataModel.users != null){
-                                    if (playerCurrentPage <= myDataModel.pagination?.totalPages!!){
-                                        pagination?.isLoading = false
-                                    }
-                                    if (playerCurrentPage == 1){
-                                        playersAdapter.list = myDataModel.users
-                                    }else{
-                                        playersAdapter.addToList(myDataModel.users)
-                                    }
+                                try {
+                                    binding.playerCount.text = "Results: ${myDataModel.totalUsers} Players"
+                                    if (myDataModel.users != null){
+                                        if (playerCurrentPage <= myDataModel.pagination?.totalPages!!){
+                                            pagination?.isLoading = false
+                                        }
+                                        if (playerCurrentPage == 1){
+                                            playersAdapter.list = myDataModel.users
+                                        }else{
+                                            playersAdapter.addToList(myDataModel.users)
+                                        }
 //                                    playersAdapter.list = myDataModel.users
+                                    }
+                                }catch (e : Exception){
+                                    e.printStackTrace()
                                 }
+
+                                if (playersAdapter.list.isNullOrEmpty()){
+                                    binding.textNoData.visibility = View.VISIBLE
+                                }
+                                else{
+                                    binding.textNoData.visibility = View.GONE
+                                }
+
+
                             }
                         }
                     }

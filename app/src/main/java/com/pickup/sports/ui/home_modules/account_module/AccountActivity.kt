@@ -80,6 +80,7 @@ class AccountActivity : BaseActivity<ActivityAccountBinding>() , BaseCustomDialo
                             showToast("Logout successfully")
                             val intent = Intent(this , HomeDashBoardActivity::class.java)
                             startActivity(intent)
+                            finishAffinity()
                         }
                     }
 

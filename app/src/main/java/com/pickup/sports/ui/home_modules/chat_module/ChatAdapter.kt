@@ -366,6 +366,31 @@ class ChatAdapter(private val context: Context, private val id: String?) :
         }
     }
 
+    fun addToTop(messages: List<ChatItem>) {
+        if (messages.isEmpty()) return
+
+        // Get all date headers in the new (older) messages
+        val incomingDateHeaders = messages
+            .filter { it.type == DATE_HEADER }
+            .mapNotNull { it.dateHeader }
+            .toSet()
+
+        // Remove matching headers already in the list (from newer pages)
+        val indicesToRemove = chatItemList
+            .withIndex()
+            .filter { it.value.type == DATE_HEADER && it.value.dateHeader in incomingDateHeaders }
+            .map { it.index }
+
+        // Safely remove duplicates (from bottom to top)
+        for (index in indicesToRemove.sortedDescending()) {
+            chatItemList.removeAt(index)
+        }
+
+        // Add older page messages to the top (which includes the header)
+        chatItemList.addAll(0, messages)
+        notifyDataSetChanged()
+    }
+
 
     fun formatDateTo_EEE_MMM_dd(inputDate: String?): String {
         return try {

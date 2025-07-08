@@ -647,6 +647,14 @@ class GameDetailsActivity : BaseActivity<ActivityGameDetailsBinding>() ,BaseCust
             showToast("Please enter phone number")
             return false
         }
+        if (TextUtils.isEmpty(signUpBottomSheet.binding.etCity.text.toString().trim())){
+            showToast("Please select city")
+            return false
+        }
+        if (TextUtils.isEmpty(signUpBottomSheet.binding.etSelectSport.text.toString().trim())){
+            showToast("Please select sports")
+            return false
+        }
         return true
     }
 

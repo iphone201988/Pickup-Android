@@ -4,13 +4,9 @@ import java.util.TimeZone
 
 object Constants {
 
-//    const val BASE_URL = "https://18.235.152.238:8000/api/"
-//    const val SOCKET_URL = "https://18.235.152.238:8000"
+    const val BASE_URL = "https://18.235.152.238:8000/api/"
+    const val SOCKET_URL = "https://18.235.152.238:8000"
 
-
-
-  const val BASE_URL= "http://192.168.18.63:8000/api/"
-  const val SOCKET_URL = "http://192.168.18.63:8000"
 
 
 

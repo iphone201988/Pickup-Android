@@ -317,6 +317,14 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() ,BaseCust
             showToast("Please enter email")
             return false
         }
+        if (TextUtils.isEmpty(binding.etCity.text.toString().trim())){
+            showToast("Please select city")
+            return false
+        }
+        if (TextUtils.isEmpty(binding.etSelectSport.text.toString().trim())){
+            showToast("Please select sports")
+            return false
+        }
         return true
     }
 

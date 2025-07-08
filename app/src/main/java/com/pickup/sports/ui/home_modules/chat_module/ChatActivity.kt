@@ -332,6 +332,56 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
 //                        }
 
 
+//                        "getChatMessage" -> {
+//                            val myDataModel: GetChatMessageApiResponse? = ImageUtils.parseJson(it.data.toString())
+//                            if (myDataModel?.messages != null) {
+//                                try {
+//                                    Log.i("dasdadaa", "setObserver: ${myDataModel.messages}")
+//                                    if (page <= myDataModel.totalPages!!) {
+//                                        pagination?.isLoading = false
+//                                        isLoading = false
+//                                    }
+//
+//                                    // 🔄 Reverse only for pages beyond 1
+//                                    val orderedMessages = if (page != 1) {
+//                                        myDataModel.messages!!.reversed()
+//                                    } else {
+//                                        myDataModel.messages!!
+//                                    }
+//
+//                                    val prevLastDate = chatAdapter.lastInsertedDateHeader
+//
+//                                    // ✅ Determine the first relevant date of this page's data
+//                                    val firstRelevantDate = if (page != 1 && orderedMessages.isNotEmpty()) {
+//                                        chatAdapter.extractOnlyDate(orderedMessages.last().createdAt)
+//                                    } else if (orderedMessages.isNotEmpty()) {
+//                                        chatAdapter.extractOnlyDate(orderedMessages.first().createdAt)
+//                                    } else {
+//                                        null
+//                                    }
+//
+//                                    // 🧠 If it’s the same as previous page, treat it as known
+//                                    val adjustedLastDate = if (firstRelevantDate == prevLastDate) firstRelevantDate else null
+//
+//                                    val (groupedMessages, newLastDate) =
+//                                        chatAdapter.groupMessagesWithDateHeaders(orderedMessages, adjustedLastDate)
+//
+//                                    chatAdapter.lastInsertedDateHeader = newLastDate
+//
+//                                    if (page == 1) {
+//                                        chatAdapter.setList(groupedMessages)  // 🔧 Handles duplicate date header inside
+//                                        binding.rvChat.scrollToPosition(chatAdapter.itemCount - 1)
+//                                    } else {
+//                                        chatAdapter.addToList(groupedMessages)
+//                                    }
+//
+//                                } catch (e: Exception) {
+//                                    e.printStackTrace()
+//                                }
+//                            }
+//                        }
+
+
                         "getChatMessage" -> {
                             val myDataModel: GetChatMessageApiResponse? = ImageUtils.parseJson(it.data.toString())
                             if (myDataModel?.messages != null) {
@@ -354,7 +404,7 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                                     // ✅ Determine the first relevant date of this page's data
                                     val firstRelevantDate = if (page != 1 && orderedMessages.isNotEmpty()) {
                                         chatAdapter.extractOnlyDate(orderedMessages.last().createdAt)
-                                    } else if (orderedMessages.isNotEmpty()) {
+                                    } else if (page == 1 && orderedMessages.isNotEmpty()) {
                                         chatAdapter.extractOnlyDate(orderedMessages.first().createdAt)
                                     } else {
                                         null
@@ -363,16 +413,24 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                                     // 🧠 If it’s the same as previous page, treat it as known
                                     val adjustedLastDate = if (firstRelevantDate == prevLastDate) firstRelevantDate else null
 
+
+                                    Log.i("dsdsdsfds", "erere: $firstRelevantDate , $prevLastDate")
+
+                                    Log.i("dsdsdsfds", "setObserver: $adjustedLastDate")
+
                                     val (groupedMessages, newLastDate) =
                                         chatAdapter.groupMessagesWithDateHeaders(orderedMessages, adjustedLastDate)
 
+                                    Log.i("Dsadasd", "setObserver:  $newLastDate")
                                     chatAdapter.lastInsertedDateHeader = newLastDate
 
+                                    Log.d("asfasasfa", "setObserver: ${groupedMessages}")
                                     if (page == 1) {
                                         chatAdapter.setList(groupedMessages)  // 🔧 Handles duplicate date header inside
                                         binding.rvChat.scrollToPosition(chatAdapter.itemCount - 1)
-                                    } else {
-                                        chatAdapter.addToList(groupedMessages)
+                                    }
+                                    else {
+                                        chatAdapter.addToTop(groupedMessages)
                                     }
 
                                 } catch (e: Exception) {
@@ -380,9 +438,6 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                                 }
                             }
                         }
-
-
-
 
 
 
@@ -476,10 +531,13 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                     Log.i("SocketHandler", "Socket connected. Joining host room...")
 
                     val jsonData = JSONObject().apply {
-                        put("type", 2)
-                        put("chatId", notificationData?.ChatId)
-                        put("gameId", notificationData?.gameId)
-
+                        if (notificationData?.ChatId != null){
+                            put("chatId", notificationData?.ChatId)
+                        }
+                        else{
+                            put("type", 2)
+                            put("gameId", notificationData?.gameId)
+                        }
                     }
                     // Emit the joinRoom event with the prepared data
                     mSocket.emit("joinRoom", jsonData)
@@ -505,9 +563,16 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                         Log.i("SocketHandler", "Socket connected. Joining room...")
 
                         val jsonData = JSONObject().apply {
-                            put("type",1)
-                            put("gameId", notificationData?.gameId)
-                            put("to", notificationData?.to)
+                            if (notificationData?.ChatId != null){
+                                put("chatId", notificationData?.ChatId)
+
+                            }
+                            else{
+                                put("type",1)
+                                put("gameId", notificationData?.gameId)
+                                put("to", notificationData?.to)
+                            }
+
 
                         }
 
@@ -556,7 +621,7 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
                 if (roomId != null) {
                     val data = HashMap<String,Any>()
                     data["page"] = 1
-                    data["limit"] = 10
+                    data["limit"] = 40
                     viewModel.getChatMessage(Constants.GET_CHAT_MESSAGES+roomId,data)
                 }
             }
@@ -688,7 +753,7 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(), BaseCustomBottomSheet.
         } else {
             if (chatDataType == "anyPlayer") {
                 if (roomId != null) {
-                    data["limit"]  = 10
+                    data["limit"]  = 40
                     viewModel.getChatMessage(Constants.GET_CHAT_MESSAGES + roomId, data)
                 }
             } else if (chatDataType == "groupPlayer") {
